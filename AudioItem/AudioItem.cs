@@ -19,8 +19,6 @@ public partial class AudioItem : Area2D
 			} else {
 				buffer[i] = Vector2.Zero;
 			}
-
-			GD.Print(buffer[i]);
 		}
 	}
 

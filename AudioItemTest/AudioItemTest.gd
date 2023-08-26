@@ -12,9 +12,6 @@ func _create_sound():
 
 func _play_sound():
 	if selected != null:
-		var buffer = selected.GetBuffer()
-		print(buffer.size())
-
 		speaker.PlaySound(selected.GetBuffer())
 		selected.queue_free()
 		selected = null
