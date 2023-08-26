@@ -3,8 +3,10 @@ using System;
 
 public partial class AudioItem : Area2D
 {
-	private Vector2[] buffer;
+	[Signal]
+	public delegate void ClickedEventHandler(Node self);
 	private readonly int bufferLength = 32767; //Number of samples for 0.5 seconds
+	private Vector2[] buffer = new Vector2[32767];
 
 	public Vector2[] GetBuffer() {
 		return buffer;
@@ -17,11 +19,14 @@ public partial class AudioItem : Area2D
 			} else {
 				buffer[i] = Vector2.Zero;
 			}
+
+			GD.Print(buffer[i]);
 		}
 	}
 
-	public override void _Ready()
-	{
-		buffer = new Vector2[bufferLength];
+	public void _OnClick(Node viewport, InputEvent inputEvent, int x) {
+		if (inputEvent.IsActionPressed("left_click")) {
+			EmitSignal(SignalName.Clicked, this);	
+		}
 	}
 }

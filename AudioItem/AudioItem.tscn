@@ -15,3 +15,5 @@ texture = ExtResource("2_umcvo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_17qxx")
+
+[connection signal="input_event" from="." to="." method="_OnClick"]

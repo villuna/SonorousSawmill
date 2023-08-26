@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqt61elh2mnpj"]
+
+[ext_resource type="Texture2D" uid="uid://cq88oufiyhwv7" path="res://icon.svg" id="1_1fkvj"]
+[ext_resource type="Script" path="res://Speaker/Speaker.cs" id="1_r6u1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jffs4"]
+size = Vector2(64, 64)
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_nhl6t"]
+
+[node name="Speaker" type="Area2D"]
+script = ExtResource("1_r6u1b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jffs4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.219608, 0.219608, 0.219608, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1fkvj")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamGenerator_nhl6t")
