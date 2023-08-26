@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsrf5j417ymsa"]
+
+[ext_resource type="Script" path="res://AudioItemTest/AudioItemTest.cs" id="1_ciuva"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_l2bgl"]
+
+[node name="AudioItem" type="Node2D"]
+script = ExtResource("1_ciuva")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamGenerator_l2bgl")

@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsrf5j417ymsa"]
+[gd_scene load_steps=4 format=3 uid="uid://dlanngvay83a5"]
 
 [ext_resource type="Script" path="res://AudioItem/AudioItem.cs" id="1_y2xiv"]
+[ext_resource type="Texture2D" uid="uid://cq88oufiyhwv7" path="res://icon.svg" id="2_umcvo"]
 
-[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_l2bgl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17qxx"]
+size = Vector2(64, 64)
 
-[node name="AudioItem" type="Node2D"]
+[node name="AudioItem" type="Area2D"]
 script = ExtResource("1_y2xiv")
 
-[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamGenerator_l2bgl")
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_umcvo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_17qxx")
