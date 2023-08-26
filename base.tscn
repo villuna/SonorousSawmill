@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://drqta8ykuhyle"]
+
+[ext_resource type="Script" path="res://world/WorldScript.gd" id="2_eh88u"]
+[ext_resource type="Script" path="res://ui/UIController.gd" id="2_jsqqr"]
+[ext_resource type="Texture2D" uid="uid://cq88oufiyhwv7" path="res://icon.svg" id="4_8wx64"]
+[ext_resource type="Script" path="res://ui/TypeSelector.gd" id="4_h7esy"]
+[ext_resource type="Script" path="res://world/components/Convayor.gd" id="4_plc5j"]
+[ext_resource type="Script" path="res://world/components/Speaker.gd" id="5_t3jfg"]
+[ext_resource type="Script" path="res://world/components/GeneratorA.gd" id="6_eyeqx"]
+
+[node name="Base" type="Node2D"]
+metadata/_edit_vertical_guides_ = []
+
+[node name="PrimaryCamera" type="Camera2D" parent="."]
+rotation = 0.016809
+anchor_mode = 0
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_jsqqr")
+
+[node name="ItemList" type="ItemList" parent="UI" node_paths=PackedStringArray("instances")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -419.0
+offset_top = -154.0
+offset_right = 421.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+allow_reselect = true
+allow_search = false
+auto_height = true
+item_count = 3
+max_columns = 12
+item_0/text = "CONVAYOR"
+item_0/icon = ExtResource("4_8wx64")
+item_1/text = "SPEAKER"
+item_1/icon = ExtResource("4_8wx64")
+item_2/text = "GENERATOR"
+item_2/icon = ExtResource("4_8wx64")
+script = ExtResource("4_h7esy")
+instances = [NodePath("../../NodeComponents/Convayor"), NodePath("../../NodeComponents/Speaker"), NodePath("../../NodeComponents/GeneratorA")]
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2_eh88u")
+
+[node name="Tiles" type="Node2D" parent="World"]
+
+[node name="CurrentTileHighlighter" type="Node2D" parent="World"]
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CurrentTileHighlighter"]
+modulate = Color(0.341176, 0.462745, 0, 1)
+z_index = -1
+texture = ExtResource("4_8wx64")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="World/CurrentTileHighlighter"]
+z_index = 1
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.364706)
+
+[node name="NodeComponents" type="Node" parent="."]
+
+[node name="Speaker" type="Node2D" parent="NodeComponents"]
+visible = false
+script = ExtResource("5_t3jfg")
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeComponents/Speaker"]
+modulate = Color(0.494118, 0.996078, 0.705882, 1)
+texture = ExtResource("4_8wx64")
+centered = false
+
+[node name="GeneratorA" type="Node2D" parent="NodeComponents"]
+visible = false
+script = ExtResource("6_eyeqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeComponents/GeneratorA"]
+modulate = Color(0.847059, 0, 0.423529, 1)
+texture = ExtResource("4_8wx64")
+centered = false
+
+[node name="Convayor" type="Node2D" parent="NodeComponents"]
+visible = false
+script = ExtResource("4_plc5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeComponents/Convayor"]
+texture = ExtResource("4_8wx64")
+centered = false
+
+[connection signal="item_selected" from="UI/ItemList" to="UI/ItemList" method="_on_item_selected"]
